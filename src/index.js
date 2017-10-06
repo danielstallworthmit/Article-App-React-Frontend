@@ -5,8 +5,9 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-const defaultState = { checked: false }
+const defaultState = { appName: 'CONDUIT' };
 const reducer = function(state = defaultState, action) {
     switch(action.type) {
         case 'TOGGLE':
@@ -17,5 +18,9 @@ const reducer = function(state = defaultState, action) {
 }
 const store = createStore(reducer);
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider>
+        <App />
+    </Provider>, 
+    document.getElementById('root'));
 registerServiceWorker();
