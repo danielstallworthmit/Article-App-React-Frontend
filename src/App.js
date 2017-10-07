@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {connect} from 'react-redux';
+import Header from './components/Header';
+import Home from './components/Home';
 
 const mapStateToProps = state => ({
   appName: state.appName
@@ -20,8 +22,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>To Do App!</h1>
-          {this.props.appName}
+        <Header appName={this.props.appName} />
+        <Home />
       </div>
     );
   }
