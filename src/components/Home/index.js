@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import agent from '../../agent';
+
 import Banner from './Banner';
 import MainView from './MainView';
 
