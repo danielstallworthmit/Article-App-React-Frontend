@@ -4,10 +4,29 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const mapStateToProps = state => ({
-    appName: state.common.appName
+    appName: state.common.appName,
+    redirectTo: state.common.redirectTo
 });
 
+const mapDispatchToProps = dispatch => ({
+    onRedirect: () => dispatch({type: 'REDIRECT'}),
+    onLoad: (payload, token) => dispatch({type: 'APP_LOAD', payload, token})
+})
+
 class Header extends React.Component {
+    componentWillMount() {
+        const token = window.localStorage.getItem('jwt');
+        if (token) {
+            agent.setToken(token);
+        }
+        this.props.onLoad(token ? agent.Auth.current() : null, token);
+    }
+    componentWillUpdate(nextProps) {
+        if (nextProps.redirectTo) {
+            this.context.router.replace(nextProps.redirectTo);
+            this.props.onRedirect();
+        }
+    }
     render() {
         return (
             <nav className="navbar navbar-light">
@@ -40,4 +59,4 @@ Header.contextTypes = {
     router: PropTypes.object.isRequired
 }
   
-  export default connect(mapStateToProps)(Header);
+  export default connect(mapStateToProps, mapDispatchToProps)(Header);
