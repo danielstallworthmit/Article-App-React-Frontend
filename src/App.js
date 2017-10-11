@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import {connect} from 'react-redux';
 import Header from './components/Header';
 import Home from './components/Home';
-import PropTypes from 'prop-types';
+import Login from './components/Login';
 
-const mapStateToProps = state => ({
-  appName: state.appName
-})
+import {Route} from 'react-router-dom';
 
 class App extends Component {
   // constructor() {
@@ -23,15 +20,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header appName={this.props.appName} />
-        <Home />
+        <Header />
+        <Route path='/login' component={Login} />
+        <Route exact path='/' component={Home} />
       </div>
     );
   }
 }
 
-App.contextTypes = {
-  router: PropTypes.object.isRequired
-}
-
-export default connect(mapStateToProps)(App);
+export default App;
