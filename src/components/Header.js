@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const mapStateToProps = state => ({
-    appName: state.appName
+    appName: state.common.appName
 });
 
 class Header extends React.Component {
