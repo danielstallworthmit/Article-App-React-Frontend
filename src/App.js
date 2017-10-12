@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import Settings from './components/Settings';
 import Register from './components/Register';
 
 import {Route} from 'react-router-dom';
@@ -24,6 +25,7 @@ class App extends Component {
         <Header />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/settings' component={Settings} />
         <Route exact path='/' component={Home} />
       </div>
     );
